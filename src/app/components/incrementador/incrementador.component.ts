@@ -25,15 +25,25 @@ export class IncrementadorComponent implements OnInit {
   cambiarValor(valor: number){
     if(this.progreso >= 100 && valor >= 0){
       this.valorSalida.emit(100);
-      return this.progreso = 100;
+      this.progreso = 100;
     }
     if(this.progreso <= 0 && valor < 0){
       this.valorSalida.emit(0)
-      return this.progreso = 100;
+      this.progreso = 100;
     }
     this.valorSalida.emit(this.progreso);
-    return this.progreso = this.progreso + valor;
-    
+    this.progreso = this.progreso + valor;    
+  }
+
+  onChange(nuevovalor: number){
+    if(nuevovalor >= 100){
+      this.progreso = 100;
+    }else if(nuevovalor <= 0){
+      this.progreso = 0;
+    }else{
+      this.progreso = nuevovalor;
+    }
+    this.valorSalida.emit(this.progreso);   
   }
 
 }
